@@ -20,7 +20,7 @@ check=True
 capt=True
 year=2016
 
-d1 = date(year, 1, 1)  # start date y m d
+d1 = date(year, 1, 1)  # start date %y %m %d
 d2 = date(year, 2, 28)  # end date
 
 
