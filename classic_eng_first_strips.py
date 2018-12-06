@@ -16,6 +16,7 @@ From 01/01/2018 in advance there is only 38 years of delay
 
 import csv
 import urllib.request
+from urllib.error import URLError, HTTPError
 from sys import argv
 from os import sep
 from datetime import date, timedelta, datetime
@@ -75,7 +76,8 @@ for i in range(len(links_list)):
             link = "not in website"
             print(link)
             output = "     None"
-    except:
+    except (URLError, HTTPError) as e:
+        print(e)
         link = "fail"
         capt = False
         loop_img = ""
@@ -85,8 +87,8 @@ for i in range(len(links_list)):
     if page_request.status_code != 200:
         link = "error web page"
     fields = [output[5:], links_list[i], loop_img, str(capt), link]
-    print(fields)
+    print(fields[1], "  ------->  ", fields[-1])
 
-    with open("list_first_comics.csv", 'a', newline='') as f:
+    with open("extracted_images" + sep + "list_first_comics.csv", 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(fields)

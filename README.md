@@ -5,10 +5,10 @@ Projects of data web scrapping
 ## Garfield comic strip scrapper
 
 
-This python 3 script obtains comic strips from 
+This python 3 script gets comic strips from 
 a web and saves them into the computer as images.
 
-There are no economical intentions to this project, 
+There are no economical intentions on this project, 
 all rights reserved to the owners of the content.
 
 
@@ -20,7 +20,7 @@ beautifulsoup4==4.6.3
 requests==2.20.1
 urllib3==1.24.1
 ```
-Library instalation process:
+Library installation process:
 ```
 pip install beautifulsoup4==4.6.3 requests==2.20.1 urllib3==1.24.1
 ```
@@ -28,7 +28,7 @@ pip install beautifulsoup4==4.6.3 requests==2.20.1 urllib3==1.24.1
 - Tests
 
 To verify the correct performance of the code, there is 
-on small test to be checked. Sometimes the web updates
+a small test to be checked. Sometimes the web updates
 the layout and the code stop working.
 
 To launch the test:
@@ -56,8 +56,8 @@ Configure the date parameters inside the file
 ```
 python comic_strip_grabber.py
 ```
-or give it the parameters on the call with format
- *'%Y/%m/%d'*:
+or give it parameters (start dates and end date) 
+on the call with format *'%Y/%m/%d'*:
 ```
 python comic_strip_grabber.py "2017/01/01" "2017/01/02"
 ```
@@ -73,8 +73,8 @@ Configure the date parameters inside the file
 ```
 python classic_emg_first_strips.py
 ```
-or give it the parameters on the call with format
- *'%Y/%m/%d'*:
+or give it parameters (start dates and end date) 
+on the call with format *'%Y/%m/%d'*:
 ```
 python classic_emg_first_strips.py "2017/01/01" "2017/01/02"
 ```
