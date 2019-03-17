@@ -27,9 +27,9 @@ capt = True
 if len(argv) == 1:
 
     # Creation of the dates of the comics strips. Select the dates (short periods only pls, be nice to the web)
-    year = 2017  # year of the desired comic strip
+    year = 2019  # year of the desired comic strip
     d1 = date(year, 1, 1)  # start date %Y %m %d
-    d2 = date(year, 1, 2)  # end date
+    d2 = date(year, 2, 28)  # end date
 
 else:
     d1 = datetime.strptime(argv[1], '%Y/%m/%d')
@@ -72,8 +72,10 @@ for i in range(len(links_list)):
     if page_request.status_code != 200:
         link = "error web page"
     fields = [links_list[i][-10:], links_list[i], loop_img, str(capt), link]
-    print(fields[1], "  ------->  ", fields[-1])
+    print(fields[1][-10:], "  ------->  ", fields[-1])
 
     with open("extracted_images" + sep + "list_comics.csv", 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(fields)
+
+print("\nFinished!")

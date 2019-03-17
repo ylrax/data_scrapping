@@ -26,7 +26,7 @@ from requests import get as get_request
 from bs4 import BeautifulSoup
 
 
-print("Starting process")
+print("Starting process for classics")
 check = True
 capt = True
 
@@ -87,7 +87,7 @@ for i in range(len(links_list)):
     if page_request.status_code != 200:
         link = "error web page"
     fields = [output[5:], links_list[i], loop_img, str(capt), link]
-    print(fields[1], "  ------->  ", fields[-1])
+    print(fields[1][5:-4], "  ------->  ", fields[-1])
 
     with open("extracted_images" + sep + "list_first_comics.csv", 'a', newline='') as f:
         writer = csv.writer(f)
