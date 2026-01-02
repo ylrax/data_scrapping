@@ -3,6 +3,7 @@ from os import environ, listdir, path
 from time import sleep
 
 import requests
+import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -51,21 +52,35 @@ MAX_SAVED_CHAPTER = get_max_saved_chapter(FOLDER_PATH)
 print(MAX_SAVED_CHAPTER)
 
 
-chrome_options = webdriver.ChromeOptions()
+chrome_options = uc.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--window-size=1920,1080')
 chrome_options.add_argument('--disable-extensions')
 chrome_options.add_argument("--log-level=2") # supress extra warnings
-#chrome_options.add_argument('--headless')
+chrome_options.add_argument('--headless')
 chrome_options.add_argument("--start-maximized")
 chrome_options.add_argument("--ignore-certificate-errors")
 chrome_options.add_argument("--disable-popup-blocking")
 chrome_options.add_argument('--profile-directory=Default')
 chrome_options.add_argument("--incognito")
 chrome_options.add_argument('--disable-dev-shm-usage')
-
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option('useAutomationExtension', False)
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 
 driver = webdriver.Chrome(options=chrome_options)
+
+
+# Reescribir navigator.webdriver antes de cargar páginas
+driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+    "source": """
+        Object.defineProperty(navigator, 'webdriver', {
+            get: () => undefined
+        });
+    """
+})
+
+
 driver.get(URL)
 sleep(59)
 
